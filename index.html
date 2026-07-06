@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Invitation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffe0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            color: #ff66b2;
+            margin-bottom: 20px;
+        }
+        .button-container {
+            display: flex;
+            gap: 50px;
+            margin-top: 20px;
+        }
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            background-color: #ff66b2;
+            color: white;
+        }
+        .hidden {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        select, input, textarea {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px 0;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page 1: Initial Question -->
+    <div id="page1">
+        <h1>Will you go on a date with me?</h1>
+        <div class="button-container">
+            <button id="yesButton">Yes</button>
+            <button id="noButton">No</button>
+        </div>
+    </div>
+
+    <!-- Page 2: Date Selection -->
+    <div id="page2" class="hidden">
+        <h1>Select a Date</h1>
+        <input type="date" id="datePicker">
+        <button id="nextDateButton">Next</button>
+    </div>
+
+    <!-- Page 3: Type of Date -->
+    <div id="page3" class="hidden">
+        <h1>Select the Type of Date</h1>
+        <select id="dateType">
+            <option value="coffee">Coffee Date</option>
+            <option value="beach">Beach Date</option>
+            <option value="dinner">Dinner Date</option>
+            <option value="club">Club Date</option>
+            <option value="zoo">Zoo Date</option>
+        </select>
+        <button id="nextTypeButton">Next</button>
+    </div>
+
+    <!-- Page 4: Pickup Location -->
+    <div id="page4" class="hidden">
+        <h1>Where Should I Pick You Up?</h1>
+        <textarea id="location" rows="4" cols="50" placeholder="Your address or location"></textarea>
+        <button id="nextLocationButton">Next</button>
+    </div>
+
+    <!--
+    <p id="summary" class="hidden"></p>
+    <p class="hidden" id="thankYou">Thank you! I will pick you up at the location you provided.</p>
+
+    <script>
+        // Get all elements
+        const page1 = document.getElementById('page1');
+        const page2 = document.getElementById('page2');
+        const page3 = document.getElementById('page3');
+        const page4 = document.getElementById('page4');
+        const summary = document.getElementById('summary');
+        const thankYou = document.getElementById('thankYou');
+        
+        document.getElementById('yesButton').addEventListener('click', () => {
+            page1.classList.add('hidden');
+            page2.classList.remove('hidden');
+        });
+
+        document.getElementById('noButton').addEventListener('click', () => {
+            // Keep it fun—no action, just a bounce-back, so you can add any behavior if you'd like
+            alert('Try saying yes!');
+        });
+
+        document.getElementById('nextDateButton').addEventListener('click', () => {
+            if (document.getElementById('datePicker').value) {
+                page2.classList.add('hidden');
+                page3.classList.remove('hidden');
+            } else {
+                alert('Please select a date!');
+            }
+        });
+
+        document.getElementById('nextTypeButton').addEventListener('click', () => {
+            if (document.getElementById('dateType').value) {
+                page3.classList.add('hidden');
+                page4.classList.remove('hidden');
+            } else {
+                alert('Please select a date type!');
+            }
+        });
+
+        document.getElementById('nextLocationButton').addEventListener('click', () => {
+            const date = document.getElementById('datePicker').value;
+            const type = document.getElementById('dateType').value;
+            const location = document.getElementById('location').value;
+            summary.innerText = `We’re going on a ${type} on ${date}. I will pick you up at: ${location}.`;
+            page4.classList.add('hidden');
+            summary.classList.remove('hidden');
+            thankYou.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
