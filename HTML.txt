@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date Invitation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffe0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            color: #ff66b2;
+            margin-bottom: 20px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin: 20px;
+        }
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .yes-button {
+            background-color: #ff66b2;
+            color: white;
+        }
+        .no-button {
+            background-color: white;
+            color: #ff66b2;
+            border: 2px solid #ff66b2;
+        }
+        .no-button:hover {
+            transform: scale(1.1);
+        }
+        .hidden {
+            display: none;
+        }
+        .page {
+            text-align: center;
+        }
+        .summary {
+            margin-top: 30px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page 1: Initial Question -->
+    <div class="page" id="page1">
+        <h1>Will you go on a date with me?</h1>
+        <div class="button-container">
+            <button class="no-button" id="noButtonLeft">No</button>
+            <button class="yes-button" id="yesButton">Yes</button>
+            <button class="no-button" id="noButtonRight">No</button>
+        </div>
+    </div>
+    
+    <!-- Page 2: Date Selection -->
+    <div class="page hidden" id="page2">
+        <h1>Select a Date</h1>
+        <input type="date" id="datePicker">
+        <br><br>
+        <button class="yes-button" id="nextDateButton">Next</button>
+    </div>
+    
+    <!-- Page 3: Type of Date -->
+    <div class="page hidden" id="page3">
+        <h1>Select the Type of Date</h1>
+        <select id="dateType">
+            <option value="coffee">Coffee Date</option>
+            <option value="beach">Beach Date</option>
+            <option value="dinner">Dinner Date</option>
+            <option value="club">Club Date</option>
+            <option value="zoo">Zoo Date</option>
+        </select>
+        <br><br>
+        <button class="yes-button" id="nextTypeButton">Next</button>
+    </div>
+    
+    <!-- Page 4: Pickup Location -->
+    <div class="page hidden" id="page4">
+        <h1>Where Should I Pick You Up?</h1>
+        <textarea id="location" rows="4" cols="50" placeholder="Your address or location"></textarea>
+        <br><br>
+        <button class="yes-button" id="nextLocationButton">Next</button>
+    </div>
+    
+    <!-- Page 5: Summary -->
+    <div class="page hidden" id="page5">
+        <h1>Summary</h1>
+        <p id="summaryText" class="summary"></p>
+        <p>Thank you! I will pick you up at the location you provided.</p>
+    </div>
+
+    <script>
+        // Get elements
+        const page1 = document.getElementById('page1');
+        const page2 = document.getElementById('page2');
+        const page3 = document.getElementById('page3');
+        const page4 = document.getElementById('page4');
+        const page5 = document.getElementById('page5');
+
+        const noButtonLeft = document.getElementById('noButtonLeft');
+        const noButtonRight = document.getElementById('noButtonRight');
+
+        let noToggle = true; // to toggle the "No" buttons
+
+        // Swap no buttons
+        noButtonLeft.addEventListener('click', () => {
+            if (noToggle) {
+                noButtonLeft.style.order = '2';
+                noButtonRight.style.order = '1';
+            } else {
+                noButtonLeft.style.order = '1';
+                noButtonRight.style.order = '2';
+            }
+            noToggle = !noToggle;
+        });
+
+        noButtonRight.addEventListener('click', () => {
+            if

@@ -1,0 +1,13 @@
+noButtonRight.addEventListener('click', () => {
+    if (noToggle) {
+        noButtonLeft.style.order = '1';
+        noButtonRight.style.order = '2';
+    } else {
+        noButtonLeft.style.order = '2';
+        noButtonRight.style.order = '1';
+    }
+    noToggle = !noToggle;
+});
+
+// Move to next page after date selection
+document.getElementById('nextDateButton').addEventListener('click',
